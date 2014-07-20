@@ -1,0 +1,33 @@
+First a magic tag
+
+Write all the strings:
+  [INT: the number of strings], then n STRING_DEF
+
+STRING_DEF: [INT: length of the string], n octets
+  (not null terminated)
+  string definitions are indexed from 0 until n-1
+
+STRING: [INT: the index of a STRING_DEF]
+
+INT:
+  If an int is an index for elements of a table that contains N elements
+  we know what the minimum and maximum values are for that int.
+  - ints that has to represent something in the range [0, 255] (bounds included)
+    are stored with 1 octet.
+  - for the range [0, 65535] use 2 octets
+  - for the range [0, 16777215] use 3 octets
+
+OPENING_TAG: 0x01 STRING, ATTRIBUT_LIST
+
+ATTRIBUT_LIST: [INT: number of attributs], n ATTRIBUT's
+
+ATTRIBUT: STRING, STRING
+
+CLOSING_TAG: 0x02
+
+PCDATA: 0x03 STRING
+
+0x04 -- opening tag with namespace, and attrs without
+0x05 -- opening tag without ns, but attrs with
+0x06 -- both opening tag and attrs with ns
+

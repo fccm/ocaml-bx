@@ -1,0 +1,6 @@
+opam-version: "1"
+maintainer: "blue-prawn"
+build: [
+  [make "install" "PREFIX=%{bin}%"]
+]
+depends: ["ocamlfind" "xml-light"]
